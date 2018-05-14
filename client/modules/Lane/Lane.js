@@ -1,7 +1,3 @@
-// import React, { Component, PropTypes } from 'react';
-// import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-
 import React, { PropTypes } from 'react';
 import NotesContainer from '../Note/NotesContainer';
 import Edit from '../../components/Edit';
@@ -9,14 +5,15 @@ import Edit from '../../components/Edit';
 // Import Style
 import styles from './Lane.css';
 
-const Lane = (props) => {
-  const { lane, laneNotes, updateLane, addNote, deleteLane, editLane } = props;
-  const laneId = lane.id;
+class Lane extends React.Component {
+  render() {
+    const { connectDropTarget, lane, laneNotes, updateLane, addNote, deleteLane, editLane } = this.props;
+    const laneId = lane.id;
 
-  return (
-    <div className={styles.Lane}>
+    return connectDropTarget(
+      <div className={styles.Lane}>
       <div className={styles.LaneDelete}>
-        <button onClick={() => deleteLane(laneId)}>Remove Lane</button>
+        <button onClick={() => deleteLane(lane)}>Remove Lane</button>
       </div>
       <div className={styles.LaneHeader}>
         <h4><Edit
@@ -35,21 +32,17 @@ const Lane = (props) => {
         laneId={laneId}
       />
     </div>
-  );
-};
+    );
+  };
+}
 
 Lane.propTypes = {
   lane: PropTypes.object,
   laneNotes: PropTypes.array,
   addNote: PropTypes.func,
   updateLane: PropTypes.func,
+  editing: PropTypes.bool,
   deleteLane: PropTypes.func,
-  editLane: PropTypes.func,
 };
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(Lane);
-
-export default Lane;
+export default Lane; 
