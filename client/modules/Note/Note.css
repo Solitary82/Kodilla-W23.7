@@ -1,1 +1,14 @@
 /* Note styles */
+
+.Note {
+	list-style: none;
+	background: rgb(186, 231, 247);
+	letter-spacing: 2px;
+	margin-right: 15px;
+	border: 1px dotted #add8e6;
+}
+
+span {
+	margin-right: 5px;
+}
+
